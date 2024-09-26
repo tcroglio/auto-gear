@@ -22,97 +22,135 @@ public class FrMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menCadastrar = new javax.swing.JMenu();
-        imCadUsuario = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        imCadSair = new javax.swing.JMenuItem();
+        CadUsuario = new javax.swing.JMenuItem();
+        CadPecas = new javax.swing.JMenuItem();
+        CadVeiculo = new javax.swing.JMenuItem();
         menConsultar = new javax.swing.JMenu();
-        imConsUsuario = new javax.swing.JMenuItem();
+        ConsUsuario = new javax.swing.JMenuItem();
+        ConsPecas = new javax.swing.JMenuItem();
+        ConsVeiculo = new javax.swing.JMenuItem();
+        menPedido = new javax.swing.JMenu();
+        PedCriar = new javax.swing.JMenuItem();
+        PedConsultar = new javax.swing.JMenuItem();
         menSobre = new javax.swing.JMenu();
-        imSobreSobre = new javax.swing.JMenuItem();
+        SobreSobre = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-div.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Texto do seu parágrafo.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel2)
-                .addContainerGap(91, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel2)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        menCadastrar.setText("Cadastrar");
+        jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
+        jMenuBar1.setForeground(new java.awt.Color(255, 102, 51));
 
-        imCadUsuario.setText("Usuário");
-        imCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menCadastrar.setBackground(new java.awt.Color(51, 51, 51));
+        menCadastrar.setText("CADASTRAR");
+        menCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        CadUsuario.setText("Usuário");
+        CadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadUsuarioActionPerformed(evt);
+                CadUsuarioActionPerformed(evt);
             }
         });
-        menCadastrar.add(imCadUsuario);
+        menCadastrar.add(CadUsuario);
 
-        jMenuItem1.setText("???");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        CadPecas.setText("Peças");
+        CadPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                CadPecasActionPerformed(evt);
             }
         });
-        menCadastrar.add(jMenuItem1);
+        menCadastrar.add(CadPecas);
 
-        imCadSair.setText("Sair");
-        imCadSair.addMouseListener(new java.awt.event.MouseAdapter() {
+        CadVeiculo.setText("Veículos");
+        CadVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imCadSairMouseClicked(evt);
+                CadVeiculoMouseClicked(evt);
             }
         });
-        imCadSair.addActionListener(new java.awt.event.ActionListener() {
+        CadVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imCadSairActionPerformed(evt);
+                CadVeiculoActionPerformed(evt);
             }
         });
-        menCadastrar.add(imCadSair);
+        menCadastrar.add(CadVeiculo);
 
         jMenuBar1.add(menCadastrar);
 
-        menConsultar.setText("Consultar");
+        menConsultar.setText("CONSULTAR");
+        menConsultar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        imConsUsuario.setText("Usuário");
-        imConsUsuario.addActionListener(new java.awt.event.ActionListener() {
+        ConsUsuario.setText("Usuário");
+        ConsUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imConsUsuarioActionPerformed(evt);
+                ConsUsuarioActionPerformed(evt);
             }
         });
-        menConsultar.add(imConsUsuario);
+        menConsultar.add(ConsUsuario);
+
+        ConsPecas.setText("Peças");
+        menConsultar.add(ConsPecas);
+
+        ConsVeiculo.setText("Veículo");
+        menConsultar.add(ConsVeiculo);
 
         jMenuBar1.add(menConsultar);
 
-        menSobre.setText("Sobre");
+        menPedido.setText("PEDIDOS");
+        menPedido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        imSobreSobre.setText("Sobre");
-        imSobreSobre.addActionListener(new java.awt.event.ActionListener() {
+        PedCriar.setText("Criar Pedido");
+        PedCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imSobreSobreActionPerformed(evt);
+                PedCriarActionPerformed(evt);
             }
         });
-        menSobre.add(imSobreSobre);
+        menPedido.add(PedCriar);
+
+        PedConsultar.setText("Consultar Pedido");
+        menPedido.add(PedConsultar);
+
+        jMenuBar1.add(menPedido);
+
+        menSobre.setText("SOBRE");
+        menSobre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        SobreSobre.setText("Sobre");
+        SobreSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SobreSobreActionPerformed(evt);
+            }
+        });
+        menSobre.add(SobreSobre);
 
         jMenuBar1.add(menSobre);
 
@@ -122,51 +160,53 @@ public class FrMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadUsuarioActionPerformed
+    private void CadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadUsuarioActionPerformed
         FrCadastrarUser cad = new FrCadastrarUser();
 
         cad.setVisible(true);
-    }//GEN-LAST:event_imCadUsuarioActionPerformed
+    }//GEN-LAST:event_CadUsuarioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void CadPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadPecasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_CadPecasActionPerformed
 
-    private void imCadSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imCadSairMouseClicked
-    }//GEN-LAST:event_imCadSairMouseClicked
+    private void CadVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadVeiculoMouseClicked
+    }//GEN-LAST:event_CadVeiculoMouseClicked
 
-    private void imCadSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadSairActionPerformed
+    private void CadVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadVeiculoActionPerformed
 
         int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
         if (confirmacao == JOptionPane.YES_OPTION) {
             this.dispose();
         }
-    }//GEN-LAST:event_imCadSairActionPerformed
+    }//GEN-LAST:event_CadVeiculoActionPerformed
 
-    private void imConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imConsUsuarioActionPerformed
+    private void ConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsUsuarioActionPerformed
         FrListaUser frList = new FrListaUser();
 
         frList.setVisible(true);
-    }//GEN-LAST:event_imConsUsuarioActionPerformed
+    }//GEN-LAST:event_ConsUsuarioActionPerformed
 
-    private void imSobreSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSobreSobreActionPerformed
+    private void SobreSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreSobreActionPerformed
         FrSobre frsobre = new FrSobre();
         frsobre.setVisible(true);
 
-    }//GEN-LAST:event_imSobreSobreActionPerformed
+    }//GEN-LAST:event_SobreSobreActionPerformed
+
+    private void PedCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedCriarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PedCriarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -201,17 +241,25 @@ public class FrMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem imCadSair;
-    private javax.swing.JMenuItem imCadUsuario;
-    private javax.swing.JMenuItem imConsUsuario;
-    private javax.swing.JMenuItem imSobreSobre;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem CadPecas;
+    private javax.swing.JMenuItem CadUsuario;
+    private javax.swing.JMenuItem CadVeiculo;
+    private javax.swing.JMenuItem ConsPecas;
+    private javax.swing.JMenuItem ConsUsuario;
+    private javax.swing.JMenuItem ConsVeiculo;
+    private javax.swing.JMenuItem PedConsultar;
+    private javax.swing.JMenuItem PedCriar;
+    private javax.swing.JMenuItem SobreSobre;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JMenu menCadastrar;
     private javax.swing.JMenu menConsultar;
+    private javax.swing.JMenu menPedido;
     private javax.swing.JMenu menSobre;
     // End of variables declaration//GEN-END:variables
 }
