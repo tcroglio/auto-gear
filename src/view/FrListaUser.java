@@ -289,7 +289,6 @@ public class FrListaUser extends javax.swing.JFrame {
             String textoCelulaId = gridUsuarios.getValueAt(posicaoSelecionada, 0).toString();
             int id_usuario = Integer.parseInt(textoCelulaId);
 
-            UserController controller = new UserController();
             User usu = new User();
             usu.setId_usuario(id_usuario);
 

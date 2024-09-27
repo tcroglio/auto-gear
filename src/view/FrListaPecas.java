@@ -4,15 +4,13 @@
  */
 package view;
 
-import controller.UserController;
+import controller.PecaController;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.User;
-import utils.Utils;
+import model.Peca;
 
 /**
- *
  * @author s.lucas
  */
 public class FrListaPecas extends javax.swing.JFrame {
@@ -48,10 +46,11 @@ public class FrListaPecas extends javax.swing.JFrame {
         btFiltrar = new javax.swing.JButton();
         lbFiltro = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbFiltro = new javax.swing.JComboBox<>();
+        cbOrderBy = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,7 +74,15 @@ public class FrListaPecas extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "Estoque", "Preço", "Marca"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(gridPecas);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 462, 100));
@@ -158,11 +165,19 @@ public class FrListaPecas extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbFiltro.setBackground(new java.awt.Color(51, 51, 51));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbFiltroActionPerformed(evt);
+            }
+        });
+
+        cbOrderBy.setBackground(new java.awt.Color(51, 51, 51));
+        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbOrderBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOrderByActionPerformed(evt);
             }
         });
 
@@ -182,14 +197,18 @@ public class FrListaPecas extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(22, 22, 22)))
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
@@ -224,28 +243,28 @@ public class FrListaPecas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbFiltroActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
 
-        if (gridUsuarios.getSelectedRow() != -1) {
-            int posicaoSelecionada = gridUsuarios.getSelectedRow();
-            String textoCelulaId = gridUsuarios.getValueAt(posicaoSelecionada, 0).toString();
+        if (gridPecas.getSelectedRow() != -1) {
+            int posicaoSelecionada = gridPecas.getSelectedRow();
+            String textoCelulaId = gridPecas.getValueAt(posicaoSelecionada, 0).toString();
 
-            int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir este usuário?");
+            int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir esta peça?");
 
             if (confirm == JOptionPane.YES_OPTION) {
 
-                int id_usuario = Integer.parseInt(textoCelulaId);
+                int id_peca = Integer.parseInt(textoCelulaId);
 
-                UserController controller = new UserController();
-                boolean deuCerto = controller.deletarUsuario(id_usuario);
+                PecaController controller = new PecaController();
+                boolean deuCerto = controller.deletarPeca(id_peca);
 
                 if (deuCerto) {
-                    JOptionPane.showMessageDialog(null, "Usuário de código " + id_usuario + " excluído com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Peça de código " + id_peca + " excluído com sucesso!");
                     listar();
                 }
 
@@ -254,33 +273,29 @@ public class FrListaPecas extends javax.swing.JFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Para excluir um usuário, selecione uma linha.");
+            JOptionPane.showMessageDialog(null, "Para excluir uma peça, selecione uma linha.");
 
         }
-
-    }
-
     }//GEN-LAST:event_btExcluirActionPerformed
-}
+
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
-    
-    if (gridUsuarios.getSelectedRow() != -1) {
-            int posicaoSelecionada = gridUsuarios.getSelectedRow();
-            String textoCelulaId = gridUsuarios.getValueAt(posicaoSelecionada, 0).toString();
+
+        if (gridPecas.getSelectedRow() != -1) {
+            int posicaoSelecionada = gridPecas.getSelectedRow();
+            String textoCelulaId = gridPecas.getValueAt(posicaoSelecionada, 0).toString();
             int id_usuario = Integer.parseInt(textoCelulaId);
 
-            UserController controller = new UserController();
-            User usu = new User();
-            usu.setId_usuario(id_usuario);
+            Peca peca = new Peca();
+            peca.setId(id_usuario);
 
-            FrAltUser frAltUser = new FrAltUser();
+            //FrAltPe frAltUser = new FrAltUser();
 
-            frAltUser.setVisible(true);
-            frAltUser.setUser(usu); // passando o usuário para a outra tela
+            //frAltUser.setVisible(true);
+            //frAltUser.setUser(usu); // passando o usuário para a outra tela
 
         } else {
-            JOptionPane.showMessageDialog(null, "Para editar um usuário, selecione uma linha.");
+            JOptionPane.showMessageDialog(null, "Para editar uma peça, selecione uma linha.");
 
         }
 
@@ -295,30 +310,32 @@ public class FrListaPecas extends javax.swing.JFrame {
         listar();
     }//GEN-LAST:event_btFiltrarActionPerformed
 
-
+    private void cbOrderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrderByActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbOrderByActionPerformed
 
     public void listar() {
-        DefaultTableModel model = (DefaultTableModel) gridUsuarios.getModel();
+        DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
         model.setNumRows(0);
 
-        UserController controller = new UserController();
+        PecaController controller = new PecaController();
 
         int tipoFiltro = cbFiltro.getSelectedIndex();
-        String filtro = textFiltro.getText();
+        String filtro = txtFiltro.getText();
         int orderBy = cbOrderBy.getSelectedIndex();
 
-        List<User> listaUsers = controller.listaUsuarios(tipoFiltro, filtro, orderBy);
+        List<Peca> listaPecas = controller.listaPecas(tipoFiltro, filtro, orderBy);
 
-        if (!listaUsers.isEmpty()) { // método retornou algum resultado
+        if (!listaPecas.isEmpty()) { // método retornou algum resultado
 
-            for (User usu : listaUsers) {
+            for (Peca peca : listaPecas) {
 
                 Object[] linha = {
-                    usu.getId_usuario(),
-                    usu.getNome(),
-                    usu.getEmail(),
-                    Utils.converterDateToString(usu.getDataNasc()),
-                    usu.ativoToString()
+                    peca.getCodigoInterno(),
+                    peca.getNome(),
+                    peca.getQuantidadeEstoque(),
+                    peca.getPreco(),
+                    peca.getMarca()
                 };
                 model.addRow(linha);
 
@@ -332,6 +349,7 @@ public class FrListaPecas extends javax.swing.JFrame {
         }
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -347,27 +365,23 @@ public class FrListaPecas extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrListaPecas.class  
+            java.util.logging.Logger.getLogger(FrListaPecas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrListaPecas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrListaPecas.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrListaPecas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrListaPecas.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrListaPecas.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrListaPecas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -384,8 +398,9 @@ public class FrListaPecas extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btFiltrar;
+    private javax.swing.JComboBox<String> cbFiltro;
+    private javax.swing.JComboBox<String> cbOrderBy;
     private javax.swing.JTable gridPecas;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

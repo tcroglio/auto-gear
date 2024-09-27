@@ -100,6 +100,11 @@ public class FrMenu extends javax.swing.JFrame {
         menConsultar.add(ConsUsuario);
 
         ConsPecas.setText("Peças");
+        ConsPecas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsPecasActionPerformed(evt);
+            }
+        });
         menConsultar.add(ConsPecas);
 
         jMenuBar1.add(menConsultar);
@@ -150,30 +155,40 @@ public class FrMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadUsuarioActionPerformed
-        FrCadastrarUser cad = new FrCadastrarUser();
+        FrCadastrarUser cadUser = new FrCadastrarUser();
 
-        cad.setVisible(true);
+        cadUser.setVisible(true);
     }//GEN-LAST:event_CadUsuarioActionPerformed
 
     private void CadPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadPecasActionPerformed
-        // TODO add your handling code here:
+        
+        FrCadastrarPeca cadPeca = new FrCadastrarPeca();
+        
+        cadPeca.setVisible(true);
+
     }//GEN-LAST:event_CadPecasActionPerformed
 
     private void ConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsUsuarioActionPerformed
-        FrListaUser frList = new FrListaUser();
+        FrListaUser frListaUser = new FrListaUser();
 
-        frList.setVisible(true);
+        frListaUser.setVisible(true);
     }//GEN-LAST:event_ConsUsuarioActionPerformed
 
     private void SobreSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreSobreActionPerformed
-        FrSobre frsobre = new FrSobre();
-        frsobre.setVisible(true);
-
+        FrSobre frSobre = new FrSobre();
+        
+        frSobre.setVisible(true);
     }//GEN-LAST:event_SobreSobreActionPerformed
 
     private void PedCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedCriarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PedCriarActionPerformed
+
+    private void ConsPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsPecasActionPerformed
+        FrListaPecas frListPecas = new FrListaPecas();
+        
+        frListPecas.setVisible(true);
+    }//GEN-LAST:event_ConsPecasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
