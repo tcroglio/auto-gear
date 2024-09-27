@@ -64,12 +64,14 @@ public class FrAltUser extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Editar Informações");
 
         txtCodigo.setEditable(false);
-        txtCodigo.setBackground(java.awt.Color.lightGray);
+        txtCodigo.setBackground(java.awt.Color.gray);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -112,6 +114,7 @@ public class FrAltUser extends javax.swing.JFrame {
 
         checkAtivo.setText("Ativo");
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
         jLabel6.setText("Senha");
@@ -125,11 +128,9 @@ public class FrAltUser extends javax.swing.JFrame {
             }
         });
 
-        txtSenha.setBackground(java.awt.Color.lightGray);
-        txtSenha.setText("jPasswordField1");
+        txtSenha.setBackground(java.awt.Color.gray);
 
-        txtConfirmarSenha.setBackground(java.awt.Color.lightGray);
-        txtConfirmarSenha.setText("jPasswordField2");
+        txtConfirmarSenha.setBackground(java.awt.Color.gray);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
