@@ -31,11 +31,9 @@ public class FrMenu extends javax.swing.JFrame {
         menCadastrar = new javax.swing.JMenu();
         CadUsuario = new javax.swing.JMenuItem();
         CadPecas = new javax.swing.JMenuItem();
-        CadVeiculo = new javax.swing.JMenuItem();
         menConsultar = new javax.swing.JMenu();
         ConsUsuario = new javax.swing.JMenuItem();
         ConsPecas = new javax.swing.JMenuItem();
-        ConsVeiculo = new javax.swing.JMenuItem();
         menPedido = new javax.swing.JMenu();
         PedCriar = new javax.swing.JMenuItem();
         PedConsultar = new javax.swing.JMenuItem();
@@ -52,20 +50,17 @@ public class FrMenu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Texto do seu parágrafo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 915, Short.MAX_VALUE)
+            .addComponent(jLabel1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
@@ -91,19 +86,6 @@ public class FrMenu extends javax.swing.JFrame {
         });
         menCadastrar.add(CadPecas);
 
-        CadVeiculo.setText("Veículos");
-        CadVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CadVeiculoMouseClicked(evt);
-            }
-        });
-        CadVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadVeiculoActionPerformed(evt);
-            }
-        });
-        menCadastrar.add(CadVeiculo);
-
         jMenuBar1.add(menCadastrar);
 
         menConsultar.setText("CONSULTAR");
@@ -119,9 +101,6 @@ public class FrMenu extends javax.swing.JFrame {
 
         ConsPecas.setText("Peças");
         menConsultar.add(ConsPecas);
-
-        ConsVeiculo.setText("Veículo");
-        menConsultar.add(ConsVeiculo);
 
         jMenuBar1.add(menConsultar);
 
@@ -160,7 +139,7 @@ public class FrMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,18 +158,6 @@ public class FrMenu extends javax.swing.JFrame {
     private void CadPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadPecasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CadPecasActionPerformed
-
-    private void CadVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadVeiculoMouseClicked
-    }//GEN-LAST:event_CadVeiculoMouseClicked
-
-    private void CadVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadVeiculoActionPerformed
-
-        int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if (confirmacao == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_CadVeiculoActionPerformed
 
     private void ConsUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsUsuarioActionPerformed
         FrListaUser frList = new FrListaUser();
@@ -243,10 +210,8 @@ public class FrMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CadPecas;
     private javax.swing.JMenuItem CadUsuario;
-    private javax.swing.JMenuItem CadVeiculo;
     private javax.swing.JMenuItem ConsPecas;
     private javax.swing.JMenuItem ConsUsuario;
-    private javax.swing.JMenuItem ConsVeiculo;
     private javax.swing.JMenuItem PedConsultar;
     private javax.swing.JMenuItem PedCriar;
     private javax.swing.JMenuItem SobreSobre;
