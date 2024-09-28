@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import controller.PecaController;
@@ -250,32 +246,6 @@ public class FrListaPecas extends javax.swing.JFrame {
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
 
-        if (gridPecas.getSelectedRow() != -1) {
-            int posicaoSelecionada = gridPecas.getSelectedRow();
-            String textoCelulaId = gridPecas.getValueAt(posicaoSelecionada, 0).toString();
-
-            int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir esta peça?");
-
-            if (confirm == JOptionPane.YES_OPTION) {
-
-                int id_peca = Integer.parseInt(textoCelulaId);
-
-                PecaController controller = new PecaController();
-                boolean deuCerto = controller.deletarPeca(id_peca);
-
-                if (deuCerto) {
-                    JOptionPane.showMessageDialog(null, "Peça de código " + id_peca + " excluído com sucesso!");
-                    listar();
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Ação cancelada.");
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Para excluir uma peça, selecione uma linha.");
-
-        }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -290,10 +260,8 @@ public class FrListaPecas extends javax.swing.JFrame {
             peca.setId(id_usuario);
 
             //FrAltPe frAltUser = new FrAltUser();
-
             //frAltUser.setVisible(true);
             //frAltUser.setUser(usu); // passando o usuário para a outra tela
-
         } else {
             JOptionPane.showMessageDialog(null, "Para editar uma peça, selecione uma linha.");
 

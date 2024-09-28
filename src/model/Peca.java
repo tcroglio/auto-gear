@@ -16,6 +16,16 @@ public class Peca {
     public Peca() {
     }
 
+    public Peca(int id, String codigoInterno, String nome, String descricao, String marca, double preco, int quantidadeEstoque) {
+        this.id = id;
+        this.codigoInterno = codigoInterno;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.marca = marca;
+        this.preco = preco;
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
     public Peca(int id, String codigoInterno, String nome, String descricao, String marca, double preco, int quantidadeEstoque, double peso) {
         this.id = id;
         this.codigoInterno = codigoInterno;

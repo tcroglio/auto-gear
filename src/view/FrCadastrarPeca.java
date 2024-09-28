@@ -145,11 +145,9 @@ public class FrCadastrarPeca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-
         if (verificaCampos()) {
             gravar();
         }
-
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void gravar() {

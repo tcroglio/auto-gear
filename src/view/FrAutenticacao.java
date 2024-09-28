@@ -44,7 +44,6 @@ public class FrAutenticacao extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 102, 51));
         jLabel1.setText("EMAIL");
 
-        txtUsuario.setEditable(false);
         txtUsuario.setBackground(new java.awt.Color(153, 153, 153));
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

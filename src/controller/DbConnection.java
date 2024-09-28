@@ -16,7 +16,7 @@ public class DbConnection {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/dbprojetopoo";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "root";
 
     private Connection conn;
 
