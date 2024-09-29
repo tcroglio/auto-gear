@@ -139,22 +139,22 @@ public class FrCadastrarUser extends javax.swing.JFrame {
 
     private void btnImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagemActionPerformed
         JFileChooser exploradorArquivos = new JFileChooser();
-        
+
         exploradorArquivos.setDialogTitle("Escolha um arquivo");
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagens", "jpg", "jpeg", "png");
         exploradorArquivos.setFileFilter(filtro);
-        
+
         exploradorArquivos.setMultiSelectionEnabled(false);
         int resultado = exploradorArquivos.showOpenDialog(null);
-        
+
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File arquivo = exploradorArquivos.getSelectedFile();
             Icon icone = Utils.converterFileParaIcon(arquivo);
             ImageIcon iconeRedimensionado = Utils.redimensionarIcon(icone, 90, 90);
             lblImagem.setIcon(iconeRedimensionado);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnImagemActionPerformed
 
     public void gravar() {
@@ -167,7 +167,13 @@ public class FrCadastrarUser extends javax.swing.JFrame {
         Date datanasc = Utils.converterStringToDate(txtDataNasc.getText());
         user.setDataNasc(datanasc);
         user.setAtivo(checkAtivo.isSelected());
-        user.setImagem(lblImagem.getIcon());
+        
+        // ESTE IF GARANTE QUE A IMAGEM SEJA SETADA APENAS SE HOUVER UMA IMAGEM INFORMADA
+        if (lblImagem.getIcon() != null) { 
+            user.setImagem(lblImagem.getIcon());
+        } else {
+            user.setImagem(null);  // Ou um ícone padrão se preferir
+        }
 
         UserController controller = new UserController();
         boolean confirm = controller.cadastrar(user);
@@ -219,7 +225,6 @@ public class FrCadastrarUser extends javax.swing.JFrame {
 
         return true;
     }
-
 
     /**
      * @param args the command line arguments

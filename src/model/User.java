@@ -15,7 +15,6 @@ public class User {
     private Date dataNasc;
     private boolean ativo;
     private Icon imagem;
-    private String teste;
 
     public User() {
     }

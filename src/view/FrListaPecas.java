@@ -1,6 +1,8 @@
 package view;
 
 import controller.PecaController;
+import controller.UserController;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,7 @@ public class FrListaPecas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lbConsultar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,7 +46,12 @@ public class FrListaPecas extends javax.swing.JFrame {
         txtFiltro = new javax.swing.JTextField();
         cbFiltro = new javax.swing.JComboBox<>();
         cbOrderBy = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+
+        jLabel3.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel3.setText("ORDENAR");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,34 +61,44 @@ public class FrListaPecas extends javax.swing.JFrame {
         lbConsultar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbConsultar.setForeground(new java.awt.Color(255, 102, 51));
         lbConsultar.setText("CONSULTAR PEÇAS");
-        jPanel1.add(lbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+        jPanel1.add(lbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setForeground(new java.awt.Color(255, 102, 51));
 
-        gridPecas.setBackground(new java.awt.Color(51, 51, 51));
         gridPecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Estoque", "Preço", "Marca"
+                "ID", "Código Interno", "Nome", "Estoque", "Preço", "Marca"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(gridPecas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 462, 100));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        gridPecas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(gridPecas);
+        if (gridPecas.getColumnModel().getColumnCount() > 0) {
+            gridPecas.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 710, 350));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -115,12 +133,12 @@ public class FrListaPecas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +152,7 @@ public class FrListaPecas extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 140, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 140, 140));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -148,6 +166,11 @@ public class FrListaPecas extends javax.swing.JFrame {
                 btFiltrarActionPerformed(evt);
             }
         });
+        btFiltrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btFiltrarKeyPressed(evt);
+            }
+        });
 
         lbFiltro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbFiltro.setForeground(new java.awt.Color(255, 102, 51));
@@ -159,79 +182,109 @@ public class FrListaPecas extends javax.swing.JFrame {
                 txtFiltroActionPerformed(evt);
             }
         });
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyPressed(evt);
+            }
+        });
 
         cbFiltro.setBackground(new java.awt.Color(51, 51, 51));
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Cód. Interno", "Marca", "Estoque > que", "Estoque < que", "Preço > que", "Preço < que" }));
         cbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFiltroActionPerformed(evt);
             }
         });
+        cbFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbFiltroKeyPressed(evt);
+            }
+        });
 
         cbOrderBy.setBackground(new java.awt.Color(51, 51, 51));
-        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "ID DESC", "Cod. Interno", "Cod. Intero DESC", "Nome A-Z", "Nome Z-A", "Estoque <", "Estoque >", "Preço <", "Preço >", "Marca A-Z", "Marca Z-A" }));
         cbOrderBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbOrderByActionPerformed(evt);
             }
         });
+        cbOrderBy.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbOrderByKeyPressed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel4.setText("ORDENAR");
+
+        jLabel6.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel6.setText("BUSCAR POR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                .addGap(22, 22, 22))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(164, 164, 164))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbFiltro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(26, 26, 26))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 340, 140));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 380, 140));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -243,7 +296,34 @@ public class FrListaPecas extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFiltroActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        // TODO add your handling code here:
+
+        if (gridPecas.getSelectedRow() != -1) {
+            int posicaoSelecionada = gridPecas.getSelectedRow();
+            String textoCelulaId = gridPecas.getValueAt(posicaoSelecionada, 0).toString();
+
+            int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja excluir esta peça?");
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                int id_peca = Integer.parseInt(textoCelulaId);
+
+                PecaController controller = new PecaController();
+                boolean deuCerto = controller.deletarPeca(id_peca);
+
+                if (deuCerto) {
+                    JOptionPane.showMessageDialog(null, "Peça de código " + id_peca + " excluída com sucesso!");
+                    listar();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ação cancelada.");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Para excluir uma peça, selecione uma linha.");
+
+        }
+
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
@@ -253,14 +333,22 @@ public class FrListaPecas extends javax.swing.JFrame {
         if (gridPecas.getSelectedRow() != -1) {
             int posicaoSelecionada = gridPecas.getSelectedRow();
             String textoCelulaId = gridPecas.getValueAt(posicaoSelecionada, 0).toString();
-            int id_usuario = Integer.parseInt(textoCelulaId);
+            int id_peca = Integer.parseInt(textoCelulaId);
 
             Peca peca = new Peca();
-            peca.setId(id_usuario);
+            peca.setId(id_peca);
 
-            //FrAltPe frAltUser = new FrAltUser();
-            //frAltUser.setVisible(true);
-            //frAltUser.setUser(usu); // passando o usuário para a outra tela
+            FrAltPeca frAltPeca = new FrAltPeca();
+            frAltPeca.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    listar();  // Atualiza a tabela chamando o método listar
+                }
+            });
+
+            frAltPeca.setVisible(true);
+            frAltPeca.setPeca(peca); // passando o objeto da peça para a outra tela
+
         } else {
             JOptionPane.showMessageDialog(null, "Para editar uma peça, selecione uma linha.");
 
@@ -273,13 +361,36 @@ public class FrListaPecas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void btFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFiltrarActionPerformed
-        // TODO add your handling code here:
         listar();
     }//GEN-LAST:event_btFiltrarActionPerformed
 
     private void cbOrderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrderByActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbOrderByActionPerformed
+
+    private void btFiltrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btFiltrarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_btFiltrarKeyPressed
+
+    private void cbFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_cbFiltroKeyPressed
+
+    private void cbOrderByKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbOrderByKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_cbOrderByKeyPressed
+
+    private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_txtFiltroKeyPressed
 
     public void listar() {
         DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
@@ -298,6 +409,7 @@ public class FrListaPecas extends javax.swing.JFrame {
             for (Peca peca : listaPecas) {
 
                 Object[] linha = {
+                    peca.getId(),
                     peca.getCodigoInterno(),
                     peca.getNome(),
                     peca.getQuantidadeEstoque(),
@@ -370,6 +482,9 @@ public class FrListaPecas extends javax.swing.JFrame {
     private javax.swing.JTable gridPecas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

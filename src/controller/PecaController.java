@@ -61,53 +61,70 @@ public class PecaController {
 
         // BUSCA
         if (!filtro.equals("")) {
-            if (tipoFiltro == 0) { // BUSCA PELO NOME
-                sql += " WHERE nome LIKE ? ";
-
-            } else if (tipoFiltro == 1) { // BUSCA PELO EMAIL
-                sql += " WHERE descricao LIKE ? ";
-
-            } else {
-                sql += " WHERE marca LIKE ?";
+            switch (tipoFiltro) {
+                case 0:
+                    // BUSCA PELO NOME
+                    sql += " WHERE nome LIKE ? ";
+                    break;
+                case 1:
+                    // BUSCA PELO EMAIL
+                    sql += " WHERE codigoInterno LIKE ? ";
+                    break;
+                case 2:
+                    sql += " WHERE marca LIKE ?";
+                    break;
+                case 3:
+                    sql += " WHERE quantidadeEstoque > ?";
+                    break;
+                case 4:
+                    sql += " WHERE quantidadeEstoque < ?";
+                    break;
+                case 5:
+                    sql += " WHERE preco > ?";
+                    break;
+                case 6:
+                    sql += " WHERE preco < ?";
+                    break;
             }
         }
 
         // ORDENA
-        if (orderBy != 0) {
+        switch (orderBy) {
+            case 0 -> // ORDENA PELO ID EM ASCENDENTE
+                sql += " ORDER BY id ";
 
-            switch (orderBy) {
-                case 1: // ORDENA PELO CÓDIGO EM ASCENDENTE
-                    sql += " ORDER BY codigoInterno ";
-                    break;
+            case 1 -> // ORDENA PELO ID EM DESCENDENTE
+                sql += " ORDER BY id DESC ";
 
-                case 2: // ORDENA PELO CÓDIGO EM DESCENDENTE
-                    sql += " ORDER BY codigoInterno DESC ";
-                    break;
+            case 2 -> // ORDENA PELO CÓDIGO INTERNO EM ASCENDENTE
+                sql += " ORDER BY codigoInterno ";
 
-                case 3: // ORDENA PELO NOME EM ASCENDENTE
-                    sql += " ORDER BY nome ";
-                    break;
+            case 3 -> // ORDENA PELO CÓDIGO INTERNO EM DESCENDENTE
+                sql += " ORDER BY codigoInterno DESC ";
 
-                case 4: // ORDENA PELO NOME EM DESCENDENTE
-                    sql += " ORDER BY nome DESC ";
-                    break;
+            case 4 -> // ORDENA PELO NOME EM ASCENDENTE
+                sql += " ORDER BY nome ";
 
-                case 5: // ORDENA PELO EMAIL EM ASCENDENTE
-                    sql += " ORDER BY preco ";
-                    break;
+            case 5 -> // ORDENA PELO NOME EM DESCENDENTE
+                sql += " ORDER BY nome DESC ";
 
-                case 6: // ORDENA PELO EM DESCENDENTE
-                    sql += " ORDER BY preco DESC ";
-                    break;
+            case 6 -> // ORDENA PELO ESTOQUE EM ASCENDENTE
+                sql += " ORDER BY quantidadeEstoque";
 
-                case 7: // ORDENA PELO EM DESCENDENTE
-                    sql += " ORDER BY quantidadeEstoque ";
-                    break;
+            case 7 -> // ORDENA PELO ESTOQUE EM DESCENDENTE
+                sql += " ORDER BY quantidadeEstoque DESC";
 
-                case 8: // ORDENA PELO EM DESCENDENTE
-                    sql += " ORDER BY quantidadeEstoque DESC ";
-                    break;
-            }
+            case 8 -> // ORDENA PELO PREÇO EM ASCENDENTE
+                sql += " ORDER BY preco ";
+
+            case 9 -> // ORDENA PELO PREÇO EM DESCENDENTE
+                sql += " ORDER BY preco DESC ";
+
+            case 10 -> // ORDENA PELA MARCA EM ASCENDENTE
+                sql += " ORDER BY marca";
+
+            case 11 -> // ORDENA PELA MARCA EM DESCENDENTE
+                sql += " ORDER BY marca DESC ";
         }
 
         try {
@@ -115,7 +132,14 @@ public class PecaController {
 
             // SETA A STRING CASO O USUÁRIO TENHA INSERIDO ALGO NA BUSCA
             if (!filtro.equals("")) {
-                comando.setString(1, "%" + filtro + "%");
+
+                if (tipoFiltro >= 3) { //tipoFiltro >= quer dizer que o usuário decidiu filtrar por quantidade em estoque ou preço
+                    comando.setString(1, filtro); // então o comando é setado sem a porcentagem %
+
+                } else {
+
+                    comando.setString(1, "%" + filtro + "%");
+                }
             }
 
             // executa a query construída
@@ -171,8 +195,8 @@ public class PecaController {
 
     //--------------------------------------------------------------------------------------//
     public boolean editarPeca(Peca peca) {
-        String sql = "UPDATE tbl_peca SET nome = ?, descricao = ?, marca = ?, preco = ?, quantidadeEstoque = ?"
-                + " WHERE id = ?";
+        String sql = "UPDATE tbl_peca SET codigoInterno = ?, nome = ?, descricao = ?, marca = ?, preco = ?, quantidadeEstoque = ?"
+                       + " WHERE id = ?";
 
         DbConnection gerenciador = new DbConnection();
         PreparedStatement comando = null;
@@ -180,20 +204,23 @@ public class PecaController {
         try {
             comando = gerenciador.prepararComando(sql);
 
-            comando.setString(1, peca.getNome());
-            comando.setString(2, peca.getDescricao());
-            comando.setString(3, peca.getMarca());
-            comando.setDouble(4, peca.getPreco());
-            comando.setInt(5, peca.getQuantidadeEstoque());
-            comando.setInt(6, peca.getId());
+            comando.setString(1, peca.getCodigoInterno());
+            comando.setString(2, peca.getNome());
+            comando.setString(3, peca.getDescricao());
+            comando.setString(4, peca.getMarca());
+            comando.setDouble(5, peca.getPreco());
+            comando.setInt(6, peca.getQuantidadeEstoque());
+            comando.setInt(7, peca.getId());
             comando.executeUpdate();
 
             return true;
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar a peça: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao editar a peça: " + ex);
+
         } finally {
             gerenciador.fecharConexao(comando);
+
         }
 
         return false;

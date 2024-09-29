@@ -1,6 +1,7 @@
 package view;
 
 import controller.PedidoController;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -47,24 +48,24 @@ public class FrListaPedido extends javax.swing.JFrame {
         txtConsultar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtConsultar.setForeground(new java.awt.Color(255, 102, 51));
         txtConsultar.setText("CONSULTAR PEDIDO");
-        jPanel1.add(txtConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, 30));
+        jPanel1.add(txtConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, 30));
 
         gridPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Número Pedido", "Cliente", "Valor"
+                "ID", "Cód. Interno", "Cliente", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -75,9 +76,18 @@ public class FrListaPedido extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        gridPedidos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(gridPedidos);
+        if (gridPedidos.getColumnModel().getColumnCount() > 0) {
+            gridPedidos.getColumnModel().getColumn(0).setMinWidth(0);
+            gridPedidos.getColumnModel().getColumn(0).setPreferredWidth(2);
+            gridPedidos.getColumnModel().getColumn(1).setMinWidth(0);
+            gridPedidos.getColumnModel().getColumn(1).setPreferredWidth(4);
+            gridPedidos.getColumnModel().getColumn(3).setMinWidth(0);
+            gridPedidos.getColumnModel().getColumn(3).setPreferredWidth(4);
+        }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 450, 155));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 650, 260));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -85,7 +95,7 @@ public class FrListaPedido extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(255, 102, 51));
         jLabel2.setText("ORDENAR");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
         txtFiltro.setBackground(new java.awt.Color(153, 153, 153));
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -93,13 +103,28 @@ public class FrListaPedido extends javax.swing.JFrame {
                 txtFiltroActionPerformed(evt);
             }
         });
-        jPanel2.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 42, 170, -1));
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 42, 260, -1));
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CLIENTE", "CÓDIGO" }));
-        jPanel2.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Código Interno", "ID" }));
+        cbFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbFiltroKeyPressed(evt);
+            }
+        });
+        jPanel2.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
-        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CÓDIGO", "CLIENTE", "VALOR" }));
-        jPanel2.add(cbOrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+        cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "ID DESC", "Cód. Interno", "Cód. Interno DESC", "Cliente A-Z", "Cliente Z-A", "Valor >", "Valor <" }));
+        cbOrderBy.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cbOrderByKeyPressed(evt);
+            }
+        });
+        jPanel2.add(cbOrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
         btListar.setForeground(new java.awt.Color(255, 102, 51));
         btListar.setText("BUSCAR");
@@ -108,7 +133,12 @@ public class FrListaPedido extends javax.swing.JFrame {
                 btListarActionPerformed(evt);
             }
         });
-        jPanel2.add(btListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        btListar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btListarKeyPressed(evt);
+            }
+        });
+        jPanel2.add(btListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 102, 51));
         jLabel4.setText("FILTRO");
@@ -116,12 +146,13 @@ public class FrListaPedido extends javax.swing.JFrame {
 
         jLabel5.setForeground(new java.awt.Color(255, 102, 51));
         jLabel5.setText("BUSCAR POR");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 340, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 470, 140));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btExcluir.setForeground(new java.awt.Color(255, 102, 51));
         btExcluir.setText("EXCLUIR");
@@ -130,63 +161,40 @@ public class FrListaPedido extends javax.swing.JFrame {
                 btExcluirActionPerformed(evt);
             }
         });
+        jPanel3.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 54, 110, -1));
 
         btListaPecas.setForeground(new java.awt.Color(255, 102, 51));
-        btListaPecas.setText("LISTAR PEÇAS");
+        btListaPecas.setText("VER PEÇAS");
         btListaPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btListaPecasActionPerformed(evt);
             }
         });
+        jPanel3.add(btListaPecas, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 95, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 51));
         jLabel1.setText("FUNÇÕES");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 22, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btListaPecas)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btExcluir)
-                .addGap(18, 18, 18)
-                .addComponent(btListaPecas)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 150, 140));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 150, 140));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,13 +211,13 @@ public class FrListaPedido extends javax.swing.JFrame {
 
             if (confirm == JOptionPane.YES_OPTION) {
 
-                int numeroPedido = Integer.parseInt(textoCelulaId);
+                int id_pedido = Integer.parseInt(textoCelulaId);
 
                 PedidoController controller = new PedidoController();
-                boolean deuCerto = controller.deletarPedido(numeroPedido);
+                boolean deuCerto = controller.deletarPedido(id_pedido);
 
                 if (deuCerto) {
-                    JOptionPane.showMessageDialog(null, "Pedido de código " + numeroPedido + " excluído com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Pedido de código " + id_pedido + " excluído com sucesso!");
                     listar();
                 }
             } else {
@@ -224,10 +232,11 @@ public class FrListaPedido extends javax.swing.JFrame {
 
         if (gridPedidos.getSelectedRow() != -1) { // verifica se tem uma linha selecionada
             int posicaoSelecionada = gridPedidos.getSelectedRow();
-            String textoCelulaNumeroPedido = gridPedidos.getValueAt(posicaoSelecionada, 0).toString();
+            String textoCelulaId = gridPedidos.getValueAt(posicaoSelecionada, 0).toString();
+            int id_pedido = Integer.parseInt(textoCelulaId);
 
             Pedido pedido = new Pedido(); // cria um novo objeto de pedido
-            pedido.setNumeroPedido(textoCelulaNumeroPedido);
+            pedido.setId(id_pedido);
 
             FrListaPecasPedido frListaPecasPedido = new FrListaPecasPedido(); // cria a tela de fala qual pedido deve ser listado
             frListaPecasPedido.setPedido(pedido); // passando o usuário para a outra tela
@@ -245,8 +254,32 @@ public class FrListaPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
-        // TODO add your handling code here:
+        listar();
     }//GEN-LAST:event_btListarActionPerformed
+
+    private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_txtFiltroKeyPressed
+
+    private void btListarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btListarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_btListarKeyPressed
+
+    private void cbFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_cbFiltroKeyPressed
+
+    private void cbOrderByKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbOrderByKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            listar();
+        }
+    }//GEN-LAST:event_cbOrderByKeyPressed
 
     private void listar() {
         DefaultTableModel model = (DefaultTableModel) gridPedidos.getModel();
@@ -265,6 +298,7 @@ public class FrListaPedido extends javax.swing.JFrame {
             for (Pedido pedido : listaPedidos) {
 
                 Object[] linha = {
+                    pedido.getId(),
                     pedido.getNumeroPedido(),
                     pedido.getCliente(),
                     pedido.getValorTotal()

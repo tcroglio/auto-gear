@@ -2,6 +2,7 @@ package view;
 
 import controller.DbConnection;
 import controller.PedidoController;
+import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,13 +40,15 @@ public class FrCriarPedido extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         gridPecas = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        txtIdPeca = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        btAdicionar = new javax.swing.JButton();
-        btRemoverPeca = new javax.swing.JButton();
         btCriarPedido = new javax.swing.JButton();
         txtValorTotal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btRemoverPeca = new javax.swing.JButton();
+        btAdicionar = new javax.swing.JButton();
+        txtIdPeca = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,25 +89,7 @@ public class FrCriarPedido extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 102, 51));
         jLabel6.setText("Peças");
 
-        jLabel7.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel7.setText("Código da Peça");
-
-        btAdicionar.setForeground(new java.awt.Color(255, 102, 51));
-        btAdicionar.setText("ADICIONAR");
-        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAdicionarActionPerformed(evt);
-            }
-        });
-
-        btRemoverPeca.setForeground(new java.awt.Color(255, 102, 51));
-        btRemoverPeca.setText("REMOVER PEÇA");
-        btRemoverPeca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRemoverPecaActionPerformed(evt);
-            }
-        });
-
+        btCriarPedido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btCriarPedido.setForeground(new java.awt.Color(255, 102, 51));
         btCriarPedido.setText("CRIAR PEDIDO");
         btCriarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +108,71 @@ public class FrCriarPedido extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 102, 51));
         jLabel8.setText("Nome do Cliente");
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
+
+        btRemoverPeca.setForeground(new java.awt.Color(255, 102, 51));
+        btRemoverPeca.setText("REMOVER PEÇA");
+        btRemoverPeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverPecaActionPerformed(evt);
+            }
+        });
+
+        btAdicionar.setForeground(new java.awt.Color(255, 102, 51));
+        btAdicionar.setText("ADICIONAR");
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarActionPerformed(evt);
+            }
+        });
+
+        txtIdPeca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdPecaKeyPressed(evt);
+            }
+        });
+
+        jLabel7.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel7.setText("Código da Peça");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7)
+                    .addComponent(btRemoverPeca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtIdPeca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btAdicionar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdPeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAdicionar)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btRemoverPeca)
+                .addGap(40, 40, 40))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -137,29 +187,25 @@ public class FrCriarPedido extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(txtIdPeca, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btAdicionar)
-                                    .addGap(71, 71, 71)
-                                    .addComponent(btRemoverPeca))
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel8))
-                                    .addGap(39, 39, 39)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btCriarPedido)
-                .addGap(150, 150, 150))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(79, 79, 79)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(btCriarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,16 +226,11 @@ public class FrCriarPedido extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdPeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionar)
-                    .addComponent(btRemoverPeca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btCriarPedido)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btCriarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -202,7 +243,9 @@ public class FrCriarPedido extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,7 +271,34 @@ public class FrCriarPedido extends javax.swing.JFrame {
     //--------------------------------------------------------------------------------------//
 
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
-        String idPecaStr = txtIdPeca.getText(); // Supondo que haja um campo de texto para o ID da peça
+        addpeca();
+    }//GEN-LAST:event_btAdicionarActionPerformed
+    //--------------------------------------------------------------------------------------//
+
+    private void btRemoverPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverPecaActionPerformed
+        removerPecaDoPedido();
+    }//GEN-LAST:event_btRemoverPecaActionPerformed
+    //--------------------------------------------------------------------------------------//
+
+    private void txtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorTotalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FrListaPecas frlistpecas = new FrListaPecas();
+
+        frlistpecas.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtIdPecaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPecaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addpeca();
+        }
+    }//GEN-LAST:event_txtIdPecaKeyPressed
+    //--------------------------------------------------------------------------------------//
+
+    private void addpeca() {
+        String idPecaStr = txtIdPeca.getText();
         if (idPecaStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, informe o ID da peça.");
             return;
@@ -254,17 +324,7 @@ public class FrCriarPedido extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Peça não encontrada.");
         }
 
-    }//GEN-LAST:event_btAdicionarActionPerformed
-    //--------------------------------------------------------------------------------------//
-
-    private void btRemoverPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverPecaActionPerformed
-        removerPecaDoPedido();
-    }//GEN-LAST:event_btRemoverPecaActionPerformed
-    //--------------------------------------------------------------------------------------//
-
-    private void txtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorTotalActionPerformed
+    }
     //--------------------------------------------------------------------------------------//
 
     private void gravar() {
@@ -476,12 +536,14 @@ public class FrCriarPedido extends javax.swing.JFrame {
     private javax.swing.JButton btCriarPedido;
     private javax.swing.JButton btRemoverPeca;
     private javax.swing.JTable gridPecas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel txtConsultar;
     private javax.swing.JTextField txtIdPeca;

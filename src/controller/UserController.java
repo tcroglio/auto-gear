@@ -63,7 +63,7 @@ public class UserController {
 
         try {
             byte[] iconBytes = Utils.iconToBytes(usuario.getImagem());
-            
+
             comando = gerenciador.prepararComando(sql);
             comando.setString(1, usuario.getNome());
             comando.setString(2, usuario.getEmail());
@@ -109,33 +109,30 @@ public class UserController {
         }
 
         // ORDENA
-        if (orderBy != 0) {
+        switch (orderBy) {
+            case 0: // ORDENA PELO CÓDIGO EM ASCENDENTE
+                sql += " ORDER BY id_usuario ";
+                break;
 
-            switch (orderBy) {
-                case 1: // ORDENA PELO CÓDIGO EM ASCENDENTE
-                    sql += " ORDER BY id_usuario ";
-                    break;
+            case 1: // ORDENA PELO CÓDIGO EM DESCENDENTE
+                sql += " ORDER BY id_usuario DESC ";
+                break;
 
-                case 2: // ORDENA PELO CÓDIGO EM DESCENDENTE
-                    sql += " ORDER BY id_usuario DESC ";
-                    break;
+            case 2: // ORDENA PELO NOME EM ASCENDENTE
+                sql += " ORDER BY nome ";
+                break;
 
-                case 3: // ORDENA PELO NOME EM ASCENDENTE
-                    sql += " ORDER BY nome ";
-                    break;
+            case 3: // ORDENA PELO NOME EM DESCENDENTE
+                sql += " ORDER BY nome DESC ";
+                break;
 
-                case 4: // ORDENA PELO NOME EM DESCENDENTE
-                    sql += " ORDER BY nome DESC ";
-                    break;
+            case 4: // ORDENA PELO EMAIL EM ASCENDENTE
+                sql += " ORDER BY email ";
+                break;
 
-                case 5: // ORDENA PELO EMAIL EM ASCENDENTE
-                    sql += " ORDER BY email ";
-                    break;
-
-                case 6: // ORDENA PELO EM DESCENDENTE
-                    sql += " ORDER BY email DESC ";
-                    break;
-            }
+            case 5: // ORDENA PELO EM DESCENDENTE
+                sql += " ORDER BY email DESC ";
+                break;
         }
 
         try {

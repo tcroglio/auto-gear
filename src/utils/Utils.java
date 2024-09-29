@@ -99,6 +99,10 @@ public class Utils {
 
     //--------------------------------------------------------------------------------------//
     public static byte[] iconToBytes(Icon imagem) {
+        if (imagem == null) {
+            return new byte[0];  // Retorna um array vazio ou outro valor padrão
+        }
+
         BufferedImage image = new BufferedImage(
                 imagem.getIconWidth(),
                 imagem.getIconHeight(),

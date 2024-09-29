@@ -56,6 +56,7 @@ public class PedidoController {
 
         return false;
     }
+    //--------------------------------------------------------------------------------------//
 
     private int getLastInsertedId(DbConnection gerenciador) throws SQLException {
         String sql = "SELECT LAST_INSERT_ID()";
@@ -78,12 +79,15 @@ public class PedidoController {
 
         // BUSCA
         if (!filtro.equals("")) {
-            if (tipoFiltro == 0) { // BUSCA PELO NUMERO DO PEDIDO
-                sql += " WHERE numeroPedido LIKE ? ";
+            switch (tipoFiltro) {
+                case 0 -> // BUSCA PELO NOME DO CLIENTE
+                    sql += " WHERE cliente LIKE ? ";
 
-            } else { // BUSCA PELO EMAIL
-                sql += " WHERE cliente LIKE ? ";
+                case 1 -> // BUSCA PELO EMAIL
+                    sql += " WHERE numeroPedido LIKE ? ";
 
+                case 2 ->
+                    sql += " WHERE id LIKE ?";
             }
         }
 
@@ -91,21 +95,29 @@ public class PedidoController {
         if (orderBy != 0) {
 
             switch (orderBy) {
-                case 1: // ORDENA PELO numeroPedido EM ASCENDENTE
+                case 0 -> // ORDENA PELO numeroPedido EM ASCENDENTE
+                    sql += " ORDER BY id ";
+
+                case 1 -> // ORDENA PELO numeroPedido EM DESCENDENTE
+                    sql += " ORDER BY id DESC ";
+
+                case 2 -> // ORDENA PELO cliente EM ASCENDENTE
                     sql += " ORDER BY numeroPedido ";
-                    break;
 
-                case 2: // ORDENA PELO numeroPedido EM DESCENDENTE
+                case 3 -> // ORDENA PELO cliente EM DESCENDENTE
                     sql += " ORDER BY numeroPedido DESC ";
-                    break;
 
-                case 3: // ORDENA PELO cliente EM ASCENDENTE
-                    sql += " ORDER BY cliente ";
-                    break;
+                case 4 ->
+                    sql += " ORDER BY cliente";
 
-                case 4: // ORDENA PELO cliente EM DESCENDENTE
-                    sql += " ORDER BY cliente DESC ";
-                    break;
+                case 5 ->
+                    sql += " ORDER BY cliente DESC";
+
+                case 6 ->
+                    sql += " ORDER BY valorTotal";
+
+                case 7 ->
+                    sql += " ORDER BY valorTotal DESC";
             }
         }
 
@@ -122,6 +134,7 @@ public class PedidoController {
 
             while (resultado.next()) {
                 Pedido pedido = new Pedido();
+                pedido.setId(resultado.getInt("id"));
                 pedido.setNumeroPedido(resultado.getString("numeroPedido"));
                 pedido.setCliente(resultado.getString("cliente"));
                 pedido.setValorTotal(resultado.getDouble("valorTotal"));
@@ -140,15 +153,15 @@ public class PedidoController {
     }
 
     //--------------------------------------------------------------------------------------//
-    public boolean deletarPedido(int numeroPedido) {
-        String sql = "DELETE FROM tbl_pedidos WHERE numeroPedido = ?";
+    public boolean deletarPedido(int id_pedido) {
+        String sql = "DELETE FROM tbl_pedidos WHERE id = ?";
 
         DbConnection gerenciador = new DbConnection();
         PreparedStatement comando = null;
 
         try {
             comando = gerenciador.prepararComando(sql);
-            comando.setInt(1, numeroPedido);
+            comando.setInt(1, id_pedido);
             comando.executeUpdate();
 
             return true;
@@ -190,6 +203,6 @@ public class PedidoController {
 
         return false;
     }
-    //--------------------------------------------------------------------------------------//
 
+    //--------------------------------------------------------------------------------------//
 }

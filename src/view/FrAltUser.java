@@ -64,7 +64,7 @@ public class FrAltUser extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -114,7 +114,7 @@ public class FrAltUser extends javax.swing.JFrame {
 
         checkAtivo.setText("Ativo");
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
         jLabel6.setText("Senha");
@@ -128,8 +128,10 @@ public class FrAltUser extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.setEditable(false);
         txtSenha.setBackground(java.awt.Color.gray);
 
+        txtConfirmarSenha.setEditable(false);
         txtConfirmarSenha.setBackground(java.awt.Color.gray);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -252,7 +254,9 @@ public class FrAltUser extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        gravar();
+        if (verificaCampos()) {
+            gravar();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -316,6 +320,9 @@ public class FrAltUser extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar usuário: " + ex);
+        } finally {
+            gerenciador.fecharConexao(comando, resultado);
+
         }
 
     }//GEN-LAST:event_formWindowOpened
