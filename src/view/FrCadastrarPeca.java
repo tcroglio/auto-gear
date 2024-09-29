@@ -192,7 +192,7 @@ public class FrCadastrarPeca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O campo nome deve ser preenchido.");
             return false;
 
-        } else if (!txtNome.getText().matches("^[\\p{L} ]+$")) {
+        } else if (!txtNome.getText().matches("^[\\p{L}\\d ]+$")) {
             JOptionPane.showMessageDialog(null, "O campo nome possui caracteres inválidos.");
             return false;
 
@@ -200,7 +200,7 @@ public class FrCadastrarPeca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O campo marca deve ser preenchido.");
             return false;
 
-        } else if (!txtMarca.getText().matches("^[\\p{L} ]+$")) {
+        } else if (!txtMarca.getText().matches("^[\\p{L}\\d ]+$")) {
             JOptionPane.showMessageDialog(null, "O campo marca possui caracteres inválidos.");
             return false;
 
@@ -209,7 +209,7 @@ public class FrCadastrarPeca extends javax.swing.JFrame {
             return false;
 
         } else if (!txtPreco.getText().matches("^\\d+(\\.\\d{1,2})?$")) {
-            JOptionPane.showMessageDialog(null, "O campo preço deve conter um valor numérico válido com até 2 casas decimais.");
+            JOptionPane.showMessageDialog(null, "O campo preço deve conter um valor numérico válido com até 2 casas decimais. \nEXEMPLO: 1990.90");
             return false;
 
         } else if (txtQuant.getText().equals("")) {

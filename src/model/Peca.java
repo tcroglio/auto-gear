@@ -13,19 +13,30 @@ public class Peca {
     private double preco;
     private int quantidadeEstoque;
 
+    // construtor vazio
     public Peca() {
     }
 
-    public Peca(int id, String codigoInterno, String nome, String descricao, String marca, double preco, int quantidadeEstoque) {
+    // construtor utilizado na tela de criação de pedido
+    public Peca(String codigoInterno, String nome, double preco, int quantidadeEstoque, String marca) {
+        this.codigoInterno = codigoInterno;
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.marca = marca;
+    }
+
+    // construtor utilizado na tela de criação de pedido
+    public Peca(int id, String codigoInterno, String nome, double preco, int quantidadeEstoque, String marca) {
         this.id = id;
         this.codigoInterno = codigoInterno;
         this.nome = nome;
-        this.descricao = descricao;
-        this.marca = marca;
         this.preco = preco;
         this.quantidadeEstoque = quantidadeEstoque;
+        this.marca = marca;
     }
 
+    // construtor completo
     public Peca(int id, String codigoInterno, String nome, String descricao, String marca, double preco, int quantidadeEstoque, double peso) {
         this.id = id;
         this.codigoInterno = codigoInterno;

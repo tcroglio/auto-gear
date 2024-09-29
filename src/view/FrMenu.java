@@ -121,6 +121,11 @@ public class FrMenu extends javax.swing.JFrame {
         menPedido.add(PedCriar);
 
         PedConsultar.setText("Consultar Pedido");
+        PedConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PedConsultarActionPerformed(evt);
+            }
+        });
         menPedido.add(PedConsultar);
 
         jMenuBar1.add(menPedido);
@@ -161,9 +166,9 @@ public class FrMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_CadUsuarioActionPerformed
 
     private void CadPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadPecasActionPerformed
-        
+
         FrCadastrarPeca cadPeca = new FrCadastrarPeca();
-        
+
         cadPeca.setVisible(true);
 
     }//GEN-LAST:event_CadPecasActionPerformed
@@ -176,19 +181,27 @@ public class FrMenu extends javax.swing.JFrame {
 
     private void SobreSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SobreSobreActionPerformed
         FrSobre frSobre = new FrSobre();
-        
+
         frSobre.setVisible(true);
     }//GEN-LAST:event_SobreSobreActionPerformed
 
     private void PedCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedCriarActionPerformed
-        // TODO add your handling code here:
+        FrCriarPedido frCriarPedido = new FrCriarPedido();
+
+        frCriarPedido.setVisible(true);
     }//GEN-LAST:event_PedCriarActionPerformed
 
     private void ConsPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsPecasActionPerformed
         FrListaPecas frListPecas = new FrListaPecas();
-        
+
         frListPecas.setVisible(true);
     }//GEN-LAST:event_ConsPecasActionPerformed
+
+    private void PedConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedConsultarActionPerformed
+        FrListaPedido frListPedido = new FrListaPedido();
+
+        frListPedido.setVisible(true);
+    }//GEN-LAST:event_PedConsultarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

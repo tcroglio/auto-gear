@@ -22,6 +22,7 @@ public class FrCriarPedido extends javax.swing.JFrame {
      */
     public FrCriarPedido() {
         initComponents();
+        this.setLocationRelativeTo(null);
         verNumeroAtual();
     }
 
@@ -43,8 +44,10 @@ public class FrCriarPedido extends javax.swing.JFrame {
         btAdicionar = new javax.swing.JButton();
         btRemoverPeca = new javax.swing.JButton();
         btCriarPedido = new javax.swing.JButton();
+        txtValorTotal = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtConsultar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtConsultar.setForeground(new java.awt.Color(255, 102, 51));
@@ -53,26 +56,29 @@ public class FrCriarPedido extends javax.swing.JFrame {
         txtNumeroPedido.setEditable(false);
 
         jLabel5.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel5.setText("Nome do Cliente");
+        jLabel5.setText("Valor Total");
 
-        gridPecas.setBackground(new java.awt.Color(51, 51, 51));
         gridPecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "Nome", "Preço", "Estoque", "Marca"
+                "ID", "Código", "Nome", "Preço", "Estoque", "Marca"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(gridPecas);
@@ -93,6 +99,11 @@ public class FrCriarPedido extends javax.swing.JFrame {
 
         btRemoverPeca.setForeground(new java.awt.Color(255, 102, 51));
         btRemoverPeca.setText("REMOVER PEÇA");
+        btRemoverPeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverPecaActionPerformed(evt);
+            }
+        });
 
         btCriarPedido.setForeground(new java.awt.Color(255, 102, 51));
         btCriarPedido.setText("CRIAR PEDIDO");
@@ -102,33 +113,49 @@ public class FrCriarPedido extends javax.swing.JFrame {
             }
         });
 
+        txtValorTotal.setEditable(false);
+        txtValorTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorTotalActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel8.setText("Nome do Cliente");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtIdPeca, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btRemoverPeca)
-                        .addGap(15, 15, 15))))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(txtIdPeca, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btAdicionar)
+                                    .addGap(71, 71, 71)
+                                    .addComponent(btRemoverPeca))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel8))
+                                    .addGap(39, 39, 39)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btCriarPedido)
@@ -142,12 +169,16 @@ public class FrCriarPedido extends javax.swing.JFrame {
                     .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addComponent(jLabel5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(jLabel6)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
@@ -165,7 +196,9 @@ public class FrCriarPedido extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,10 +218,14 @@ public class FrCriarPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //--------------------------------------------------------------------------------------//
 
     private void btCriarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarPedidoActionPerformed
-        gravar();
+        if (validaCampos()) {
+            gravar();
+        }
     }//GEN-LAST:event_btCriarPedidoActionPerformed
+    //--------------------------------------------------------------------------------------//
 
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
         String idPecaStr = txtIdPeca.getText(); // Supondo que haja um campo de texto para o ID da peça
@@ -208,11 +245,27 @@ public class FrCriarPedido extends javax.swing.JFrame {
         Peca peca = buscarPecaPorId(idPeca);
         if (peca != null) {
             adicionarLinhaNaTabela(peca);
+
+            // recalcula o valor que está no text field "txtValorTotal"
+            DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
+            txtValorTotal.setText(String.valueOf(calculaPrecoTotal(model)));
+
         } else {
             JOptionPane.showMessageDialog(this, "Peça não encontrada.");
         }
 
     }//GEN-LAST:event_btAdicionarActionPerformed
+    //--------------------------------------------------------------------------------------//
+
+    private void btRemoverPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverPecaActionPerformed
+        removerPecaDoPedido();
+    }//GEN-LAST:event_btRemoverPecaActionPerformed
+    //--------------------------------------------------------------------------------------//
+
+    private void txtValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorTotalActionPerformed
+    //--------------------------------------------------------------------------------------//
 
     private void gravar() {
 
@@ -234,6 +287,7 @@ public class FrCriarPedido extends javax.swing.JFrame {
         }
 
     }
+    //--------------------------------------------------------------------------------------//
 
     private void verNumeroAtual() {
         String sql = "SELECT * FROM tbl_pedidos ORDER BY id DESC LIMIT 1";
@@ -243,61 +297,57 @@ public class FrCriarPedido extends javax.swing.JFrame {
         ResultSet resultado = null;
         Integer ultimoNumero = 0;
         try {
-            comando = gerenciador.prepararComando(sql); // prepara o comando
+            comando = gerenciador.prepararComando(sql);
             resultado = comando.executeQuery();
 
             while (resultado.next()) {
                 ultimoNumero = resultado.getInt("numeroPedido");
                 ultimoNumero++;
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
 
         } finally {
             gerenciador.fecharConexao(comando, resultado);
-
         }
 
         txtNumeroPedido.setText(ultimoNumero.toString());
     }
+    //--------------------------------------------------------------------------------------//
 
     private double calculaPrecoTotal(DefaultTableModel model) {
         double precoTotal = 0.0;
 
-        for (int i = 0; i < model.getRowCount(); i++) {
+        for (int i = 0; i < model.getRowCount(); i++) { // itera sobre todas as linhas da tabela
             Object valorPreco = model.getValueAt(i, 3);
 
-            if (valorPreco instanceof Number) {
-                precoTotal += ((Number) valorPreco).doubleValue(); // Acumula o preço
-            }
+            precoTotal += ((Number) valorPreco).doubleValue();
         }
 
-        return precoTotal; // Retorna o preço total
+        return precoTotal;
     }
+    //--------------------------------------------------------------------------------------//
 
     private List<Peca> obterListaPecas() {
         List<Peca> listaPecas = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
 
-        // Percorre todas as linhas do modelo
-        for (int i = 0; i < model.getRowCount(); i++) {
-            // Obtém os valores das colunas
-            int id = (int) model.getValueAt(i, 0); // Supondo que a coluna 0 contém o ID
-            String codigoInterno = (String) model.getValueAt(i, 1); // Código interno na coluna 1
-            String nome = (String) model.getValueAt(i, 2); // Nome na coluna 2
-            String descricao = (String) model.getValueAt(i, 3); // Descrição na coluna 3
-            String marca = (String) model.getValueAt(i, 4); // Marca na coluna 4
-            double preco = (double) model.getValueAt(i, 5); // Preço na coluna 5
-            int quantidadeEstoque = (int) model.getValueAt(i, 6); // Quantidade em estoque na coluna 6
+        for (int i = 0; i < model.getRowCount(); i++) { // itera sobre todas as linhas da tabela
+            int id = (int) model.getValueAt(i, 0);
+            String codigoInterno = (String) model.getValueAt(i, 1);
+            String nome = (String) model.getValueAt(i, 2);
+            double preco = (double) model.getValueAt(i, 3);
+            int quantidadeEstoque = (int) model.getValueAt(i, 4);
+            String marca = (String) model.getValueAt(i, 5);
 
             // Cria um novo objeto Peca e adiciona à lista
-            Peca peca = new Peca(id, codigoInterno, nome, descricao, marca, preco, quantidadeEstoque);
+            Peca peca = new Peca(id, codigoInterno, nome, preco, quantidadeEstoque, marca);
             listaPecas.add(peca);
         }
 
         return listaPecas; // Retorna a lista de peças
     }
+    //--------------------------------------------------------------------------------------//
 
     private Peca buscarPecaPorId(int id) {
         String sql = "SELECT * FROM tbl_peca WHERE id = ?";
@@ -316,10 +366,9 @@ public class FrCriarPedido extends javax.swing.JFrame {
                         resultado.getInt("id"),
                         resultado.getString("codigoInterno"),
                         resultado.getString("nome"),
-                        resultado.getString("descricao"),
-                        resultado.getString("marca"),
                         resultado.getDouble("preco"),
-                        resultado.getInt("quantidadeEstoque")
+                        resultado.getInt("quantidadeEstoque"),
+                        resultado.getString("marca")
                 );
             }
         } catch (SQLException e) {
@@ -330,11 +379,13 @@ public class FrCriarPedido extends javax.swing.JFrame {
 
         return null; // Retorna null se não encontrar a peça
     }
+    //--------------------------------------------------------------------------------------//
 
     private void adicionarLinhaNaTabela(Peca peca) {
         DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
 
         Object[] linha = {
+            peca.getId(),
             peca.getCodigoInterno(),
             peca.getNome(),
             peca.getPreco(),
@@ -343,7 +394,51 @@ public class FrCriarPedido extends javax.swing.JFrame {
         };
         model.addRow(linha);
     }
+    //--------------------------------------------------------------------------------------//
 
+    private void removerPecaDoPedido() {
+
+        if (gridPecas.getSelectedRow() != -1) {
+            int posicaoSelecionada = gridPecas.getSelectedRow();
+            int confirm = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja remover esta peça do pedido?");
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
+                model.removeRow(posicaoSelecionada);
+                txtValorTotal.setText(String.valueOf(calculaPrecoTotal(model)));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ação cancelada.");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Para remover uma peça do pedido, selecione uma linha.");
+
+        }
+
+    }
+    //--------------------------------------------------------------------------------------//
+
+    private boolean validaCampos() {
+        // Verifica se o campo "Nome do Cliente" está vazio
+        if (txtNomeCliente.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "O campo 'Nome do Cliente' é obrigatório.");
+            return false;
+        }
+
+        // Verifica se há pelo menos uma linha na tabela de peças
+        DefaultTableModel model = (DefaultTableModel) gridPecas.getModel();
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Adicione pelo menos uma peça ao pedido.");
+            return false;
+        }
+
+        // Se tudo estiver correto, retorna true
+        return true;
+    }
+
+    //--------------------------------------------------------------------------------------//
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -384,6 +479,7 @@ public class FrCriarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
@@ -391,5 +487,6 @@ public class FrCriarPedido extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdPeca;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNumeroPedido;
+    private javax.swing.JTextField txtValorTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,9 @@
 package view;
 
-import controller.PecaController;
 import controller.PedidoController;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Peca;
 import model.Pedido;
 
 /**
@@ -41,7 +39,7 @@ public class FrListaPedido extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,7 +49,6 @@ public class FrListaPedido extends javax.swing.JFrame {
         txtConsultar.setText("CONSULTAR PEDIDO");
         jPanel1.add(txtConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, 30));
 
-        gridPedidos.setBackground(new java.awt.Color(51, 51, 51));
         gridPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -60,15 +57,22 @@ public class FrListaPedido extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Código", "Cliente", "Valor"
+                "Número Pedido", "Cliente", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(gridPedidos);
@@ -143,30 +147,31 @@ public class FrListaPedido extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(btListaPecas)
-                .addGap(15, 15, 15))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btExcluir)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btListaPecas)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btListaPecas)
-                .addGap(22, 22, 22))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 150, 140));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 150, 140));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
@@ -198,13 +203,13 @@ public class FrListaPedido extends javax.swing.JFrame {
 
             if (confirm == JOptionPane.YES_OPTION) {
 
-                int id_pedido = Integer.parseInt(textoCelulaId);
+                int numeroPedido = Integer.parseInt(textoCelulaId);
 
                 PedidoController controller = new PedidoController();
-                boolean deuCerto = controller.deletarPedido(id_pedido);
+                boolean deuCerto = controller.deletarPedido(numeroPedido);
 
                 if (deuCerto) {
-                    JOptionPane.showMessageDialog(null, "Pedido de código " + id_pedido + " excluído com sucesso!");
+                    JOptionPane.showMessageDialog(null, "Pedido de código " + numeroPedido + " excluído com sucesso!");
                     listar();
                 }
             } else {
@@ -216,7 +221,23 @@ public class FrListaPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btListaPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListaPecasActionPerformed
-        // TODO add your handling code here:
+
+        if (gridPedidos.getSelectedRow() != -1) { // verifica se tem uma linha selecionada
+            int posicaoSelecionada = gridPedidos.getSelectedRow();
+            String textoCelulaNumeroPedido = gridPedidos.getValueAt(posicaoSelecionada, 0).toString();
+
+            Pedido pedido = new Pedido(); // cria um novo objeto de pedido
+            pedido.setNumeroPedido(textoCelulaNumeroPedido);
+
+            FrListaPecasPedido frListaPecasPedido = new FrListaPecasPedido(); // cria a tela de fala qual pedido deve ser listado
+            frListaPecasPedido.setPedido(pedido); // passando o usuário para a outra tela
+            frListaPecasPedido.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Para visualizar as peças de um pedido, selecione uma linha.");
+
+        }
+
     }//GEN-LAST:event_btListaPecasActionPerformed
 
     private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed

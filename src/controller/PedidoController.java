@@ -37,13 +37,13 @@ public class PedidoController {
                 comandoPedidoPeca = gerenciador.prepararComando(sqlPedidoPeca);
 
                 for (Peca peca : listapecas) {
-                    comandoPedidoPeca.setInt(1, idPedido); 
-                    comandoPedidoPeca.setInt(2, peca.getId()); 
-                    comandoPedidoPeca.addBatch(); 
+                    comandoPedidoPeca.setInt(1, idPedido);
+                    comandoPedidoPeca.setInt(2, peca.getId());
+                    comandoPedidoPeca.addBatch();
                 }
 
                 comandoPedidoPeca.executeBatch();
-                return true; 
+                return true;
             }
 
         } catch (SQLException e) {
@@ -54,17 +54,17 @@ public class PedidoController {
             gerenciador.fecharConexao(comandoPedidoPeca, null);
         }
 
-        return false; 
+        return false;
     }
 
     private int getLastInsertedId(DbConnection gerenciador) throws SQLException {
-        String sql = "SELECT LAST_INSERT_ID()"; 
+        String sql = "SELECT LAST_INSERT_ID()";
         try (PreparedStatement comando = gerenciador.prepararComando(sql); ResultSet resultado = comando.executeQuery()) {
             if (resultado.next()) {
-                return resultado.getInt(1); 
+                return resultado.getInt(1);
             }
         }
-        return -1; 
+        return -1;
     }
 
     //--------------------------------------------------------------------------------------//
@@ -140,15 +140,15 @@ public class PedidoController {
     }
 
     //--------------------------------------------------------------------------------------//
-    public boolean deletarPedido(int id_pedido) {
-        String sql = "DELETE FROM tbl_pedidos WHERE id = ?";
+    public boolean deletarPedido(int numeroPedido) {
+        String sql = "DELETE FROM tbl_pedidos WHERE numeroPedido = ?";
 
         DbConnection gerenciador = new DbConnection();
         PreparedStatement comando = null;
 
         try {
             comando = gerenciador.prepararComando(sql);
-            comando.setInt(1, id_pedido);
+            comando.setInt(1, numeroPedido);
             comando.executeUpdate();
 
             return true;

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Pedido {
 
+    private int id;
     private String numeroPedido;
     private String cliente;
     private List<Peca> pecas;
@@ -24,6 +25,14 @@ public class Pedido {
         if (this.pecas.remove(peca)) {
             this.valorTotal -= peca.getPreco(); // Atualiza o valor total ao remover peça
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNumeroPedido() {
@@ -57,7 +66,6 @@ public class Pedido {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-    
 
     // Método para exibir os detalhes do pedido
     public void exibirDetalhesPedido() {
@@ -69,5 +77,5 @@ public class Pedido {
         }
         System.out.println("Valor total: " + valorTotal);
     }
-    
+
 }
