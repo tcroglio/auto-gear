@@ -29,17 +29,21 @@ public class FrListaPecasPedido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         gridPecas = new javax.swing.JTable();
+        txtNomeCliente = new javax.swing.JTextField();
+        btnFechar = new javax.swing.JButton();
         lbConsultar = new javax.swing.JLabel();
         txtNumeroPedido = new javax.swing.JTextField();
-        btnFechar = new javax.swing.JButton();
         txtTotalPedido = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtNomeCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -47,6 +51,10 @@ public class FrListaPecasPedido extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gridPecas.setBackground(new java.awt.Color(220, 220, 220));
         gridPecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -73,43 +81,59 @@ public class FrListaPecasPedido extends javax.swing.JFrame {
         gridPecas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(gridPecas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 146, 563, 264));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 580, 264));
 
-        lbConsultar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbConsultar.setForeground(new java.awt.Color(255, 102, 51));
-        lbConsultar.setText("CONSULTAR PEÇAS DO PEDIDO Nº");
-        getContentPane().add(lbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        txtNomeCliente.setEditable(false);
+        jPanel1.add(txtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 270, 30));
 
-        txtNumeroPedido.setEditable(false);
-        txtNumeroPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroPedidoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtNumeroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 52, 71, 30));
-
-        btnFechar.setForeground(new java.awt.Color(255, 102, 51));
-        btnFechar.setText("FECHAR");
+        btnFechar.setBackground(new java.awt.Color(220, 220, 220));
+        btnFechar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFechar.setText("x");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 416, 104, -1));
+        jPanel1.add(btnFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 40, 30));
+
+        lbConsultar.setFont(new java.awt.Font("Segoe UI Black", 3, 32)); // NOI18N
+        lbConsultar.setForeground(new java.awt.Color(255, 102, 51));
+        lbConsultar.setText("CONSULTAR PEDIDO");
+        jPanel1.add(lbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 410, -1));
+
+        txtNumeroPedido.setEditable(false);
+        txtNumeroPedido.setBackground(new java.awt.Color(220, 220, 220));
+        txtNumeroPedido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtNumeroPedido.setForeground(new java.awt.Color(255, 102, 51));
+        txtNumeroPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroPedidoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNumeroPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 71, 30));
 
         txtTotalPedido.setEditable(false);
-        getContentPane().add(txtTotalPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 71, -1));
+        jPanel1.add(txtTotalPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 100, 30));
 
-        jLabel6.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel6.setText("Nome do Cliente");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        txtNomeCliente.setEditable(false);
-        getContentPane().add(txtNomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 264, -1));
-
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 102, 51));
         jLabel7.setText("Total Pedido");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, 20));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel6.setText("Nome do Cliente");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel2.setText("Pedido número ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,8 +254,11 @@ public class FrListaPecasPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFechar;
     private javax.swing.JTable gridPecas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbConsultar;
     private javax.swing.JTextField txtNomeCliente;

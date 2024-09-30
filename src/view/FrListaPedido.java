@@ -45,11 +45,12 @@ public class FrListaPedido extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtConsultar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtConsultar.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         txtConsultar.setForeground(new java.awt.Color(255, 102, 51));
         txtConsultar.setText("CONSULTAR PEDIDO");
-        jPanel1.add(txtConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, 30));
+        jPanel1.add(txtConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, 30));
 
+        gridPedidos.setBackground(new java.awt.Color(204, 204, 204));
         gridPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -87,17 +88,18 @@ public class FrListaPedido extends javax.swing.JFrame {
             gridPedidos.getColumnModel().getColumn(3).setPreferredWidth(4);
         }
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 650, 260));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 650, 230));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 102, 51));
         jLabel2.setText("ORDENAR");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
-        txtFiltro.setBackground(new java.awt.Color(153, 153, 153));
+        txtFiltro.setBackground(new java.awt.Color(204, 204, 204));
         txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroActionPerformed(evt);
@@ -108,16 +110,18 @@ public class FrListaPedido extends javax.swing.JFrame {
                 txtFiltroKeyPressed(evt);
             }
         });
-        jPanel2.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 42, 260, -1));
+        jPanel2.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 42, 230, -1));
 
+        cbFiltro.setBackground(new java.awt.Color(204, 204, 204));
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Código Interno", "ID" }));
         cbFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cbFiltroKeyPressed(evt);
             }
         });
-        jPanel2.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
+        jPanel2.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 130, -1));
 
+        cbOrderBy.setBackground(new java.awt.Color(204, 204, 204));
         cbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "ID DESC", "Cód. Interno", "Cód. Interno DESC", "Cliente A-Z", "Cliente Z-A", "Valor >", "Valor <" }));
         cbOrderBy.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -126,8 +130,9 @@ public class FrListaPedido extends javax.swing.JFrame {
         });
         jPanel2.add(cbOrderBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
-        btListar.setForeground(new java.awt.Color(255, 102, 51));
-        btListar.setText("BUSCAR");
+        btListar.setBackground(new java.awt.Color(204, 204, 204));
+        btListar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btListar.setText("FILTRAR");
         btListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btListarActionPerformed(evt);
@@ -138,23 +143,26 @@ public class FrListaPedido extends javax.swing.JFrame {
                 btListarKeyPressed(evt);
             }
         });
-        jPanel2.add(btListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, -1));
+        jPanel2.add(btListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 160, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 102, 51));
         jLabel4.setText("FILTRO");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 102, 51));
         jLabel5.setText("BUSCAR POR");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 470, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 460, 140));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btExcluir.setForeground(new java.awt.Color(255, 102, 51));
+        btExcluir.setBackground(new java.awt.Color(204, 204, 204));
+        btExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btExcluir.setText("EXCLUIR");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +171,8 @@ public class FrListaPedido extends javax.swing.JFrame {
         });
         jPanel3.add(btExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 54, 110, -1));
 
-        btListaPecas.setForeground(new java.awt.Color(255, 102, 51));
+        btListaPecas.setBackground(new java.awt.Color(204, 204, 204));
+        btListaPecas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btListaPecas.setText("VER PEÇAS");
         btListaPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +181,7 @@ public class FrListaPedido extends javax.swing.JFrame {
         });
         jPanel3.add(btListaPecas, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 95, 110, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 51));
         jLabel1.setText("FUNÇÕES");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 22, -1, -1));
@@ -180,7 +189,7 @@ public class FrListaPedido extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 150, 140));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,9 +201,7 @@ public class FrListaPedido extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

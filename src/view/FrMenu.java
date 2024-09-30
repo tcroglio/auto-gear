@@ -68,7 +68,7 @@ public class FrMenu extends javax.swing.JFrame {
 
         menCadastrar.setBackground(new java.awt.Color(51, 51, 51));
         menCadastrar.setText("CADASTRAR");
-        menCadastrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         CadUsuario.setText("Usuário");
         CadUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class FrMenu extends javax.swing.JFrame {
         jMenuBar1.add(menCadastrar);
 
         menConsultar.setText("CONSULTAR");
-        menConsultar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menConsultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         ConsUsuario.setText("Usuário");
         ConsUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class FrMenu extends javax.swing.JFrame {
         jMenuBar1.add(menConsultar);
 
         menPedido.setText("PEDIDOS");
-        menPedido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menPedido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         PedCriar.setText("Criar Pedido");
         PedCriar.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ public class FrMenu extends javax.swing.JFrame {
         jMenuBar1.add(menPedido);
 
         menSobre.setText("SOBRE");
-        menSobre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menSobre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         SobreSobre.setText("Sobre");
         SobreSobre.addActionListener(new java.awt.event.ActionListener() {
