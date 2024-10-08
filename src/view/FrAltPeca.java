@@ -33,7 +33,7 @@ public class FrAltPeca extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCodInterno = new javax.swing.JTextField();
+        txtCodigoPeca = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
@@ -70,8 +70,8 @@ public class FrAltPeca extends javax.swing.JFrame {
         jLabel1.setText("EDITAR PEÇA");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        txtCodInterno.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(txtCodInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 71, -1));
+        txtCodigoPeca.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel1.add(txtCodigoPeca, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 71, -1));
 
         txtNome.setBackground(new java.awt.Color(220, 220, 220));
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 370, -1));
@@ -109,7 +109,7 @@ public class FrAltPeca extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 70, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -232,7 +232,7 @@ public class FrAltPeca extends javax.swing.JFrame {
             if (resultado.next()) { // Mover o cursor para a primeira linha
 
                 txtCodigoPeca.setText(Integer.toString(resultado.getInt("id")));
-                txtCodInterno.setText(resultado.getString("codigoInterno"));
+                txtCodigoPeca.setText(resultado.getString("codigoInterno"));
                 txtNome.setText(resultado.getString("nome"));
                 txtMarca.setText(resultado.getString("marca"));
                 txtDescricao.setText(resultado.getString("descricao"));
@@ -256,7 +256,7 @@ public class FrAltPeca extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecoActionPerformed
 
     public void alterarPeca() {
-        peca.setCodigoInterno(txtCodInterno.getText());
+        peca.setCodigoInterno(txtCodigoPeca.getText());
         peca.setNome(txtNome.getText());
         peca.setMarca(txtMarca.getText());
         peca.setDescricao(txtDescricao.getText());
@@ -312,11 +312,11 @@ public class FrAltPeca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O campo descrição deve ser preenchido.");
             return false;
 
-        } else if (txtCodInterno.getText().equals("")) {
+        } else if (txtCodigoPeca.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo código interno deve ser preenchido.");
             return false;
 
-        } else if (!txtCodInterno.getText().matches("^[a-zA-Z0-9]+$")) {
+        } else if (!txtCodigoPeca.getText().matches("^[a-zA-Z0-9]+$")) {
             JOptionPane.showMessageDialog(null, "O campo código interno deve conter apenas letras e números.");
             return false;
         }
@@ -373,7 +373,7 @@ public class FrAltPeca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField txtCodInterno;
+    private javax.swing.JTextField txtCodigoPeca;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNome;

@@ -97,10 +97,8 @@ public class FrListaUser extends javax.swing.JFrame {
         jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 648, 265));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        textFiltro.setEditable(false);
         textFiltro.setBackground(new java.awt.Color(220, 220, 220));
         textFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +171,6 @@ public class FrListaUser extends javax.swing.JFrame {
         jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 480, 130));
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
 
         btnExcluir2.setBackground(new java.awt.Color(220, 220, 220));
         btnExcluir2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -221,7 +218,7 @@ public class FrListaUser extends javax.swing.JFrame {
                 .addComponent(btnEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcluir2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel6.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, -1, 130));

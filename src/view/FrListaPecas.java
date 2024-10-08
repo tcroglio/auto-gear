@@ -64,7 +64,6 @@ public class FrListaPecas extends javax.swing.JFrame {
         jPanel1.add(lbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
 
         btExcluir.setBackground(new java.awt.Color(204, 204, 204));
         btExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -102,7 +101,7 @@ public class FrListaPecas extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,13 +112,12 @@ public class FrListaPecas extends javax.swing.JFrame {
                 .addComponent(btEditar)
                 .addGap(15, 15, 15)
                 .addComponent(btExcluir)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 180, 160));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         jPanel3.setForeground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -199,7 +197,7 @@ public class FrListaPecas extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Preview.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 160, 30));
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setForeground(new java.awt.Color(255, 102, 51));
 
         gridPecas.setBackground(new java.awt.Color(204, 204, 204));

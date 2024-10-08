@@ -149,7 +149,6 @@ public class FrAltUser extends javax.swing.JFrame {
         jPanel1.add(checkAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 100, 30));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         jPanel2.setForeground(new java.awt.Color(255, 102, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
